@@ -1,0 +1,55 @@
+version: "3.7"
+services:
+    server1:
+        container_name: car_service1
+        build: ./service1
+        image: saifulkislam/car_service1
+        ports: 
+        - published: 5000
+          target: 5000
+          protocol: tcp
+        environment:
+            DATABASE_URI: ${DATABASE_URI}
+            SECRET_KEY: ${SECRET_KEY}
+        deploy:
+            replicas: 2
+    server2:
+        container_name: car_make_service1
+        build: ./service2
+        image: saifulkislam/car_make_service1
+        ports:
+            - target: 5001
+              published: 5001
+              protocol: tcp
+        deploy:
+            replicas: 2
+    server3:
+        container_name: car_shape_service2
+        build: ./service3
+        image: saifulkislam/car_shape_service2
+        ports:
+            - target: 5002
+              published: 5002
+              protocol: tcp
+        deploy:
+            replicas: 2
+    server4:
+        container_name: car_model_service4
+        build: ./service4
+        image: saifulkislam/car_model_service4
+        ports:
+            - target: 5003
+              published: 5003
+              protocol: tcp
+        deploy:
+            replicas: 2
+    nginx:
+        image: nginx:latest
+        ports:
+            - target: 80
+              published: 80
+              protocol: tcp
+        volumes:
+            - type: bind
+              source: ./nginx.conf
+              target: /etc/nginx.conf
