@@ -1,0 +1,40 @@
+<html>
+    <head>
+    <title>Project 2</title>
+    
+    </head>
+<body>
+        <div>
+            <h1>Random Car Generator</h1>
+        </div>
+    <br>
+    <br>
+    <div>
+        <h1>Your random car make is {{ make }} </h1>
+        <br>
+        <h1>Your chosen shape on this trip is {{ shape }}</h1> 
+        <br>
+        <h1>The car that has been generated for you is {{ make, mdoel }}</h1>
+        <br>
+        <div>
+            <a href="{{ url_for('index')}}">
+                <button>Generate</button>
+        </div></a>
+        <br>
+        <h2>The last 3 cars generated</h2>
+        <br>
+        <p>
+
+            {% for car_generator in last_3_Cars %}
+            {{ car_generator.make }} , {{ car_generator.shape }}, {{ car_generator.model }} GBP
+            <br>
+            {% endfor %}
+         
+        </p>
+
+    </div>
+     <br><br>
+    
+
+</body>
+</html>
